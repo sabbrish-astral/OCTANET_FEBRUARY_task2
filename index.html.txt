@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:rosybrown;
+        }
+
+        .todo-container {
+            background-color:white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius:20px;
+            background:rosybrown;
+            box-shadow:10px 10px 10px 10px rgb(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <title><span>To-Do</span><span>List</span></title>
+</head>
+<body>
+    <div class="todo-container">
+        <h1><span id="one">To-Do</span> <span id="one">List</span></h1>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button onclick="addTask()">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+    <style >
+        span#one{
+            background:linear-gradient(to right, lightblue 0%,hotpink 100%);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+    </style>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+
+            if (taskInput.value.trim() === '') {
+                alert('Please enter a task.');
+                return;
+            }
+
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${taskInput.value}</span>
+                <button onclick="removeTask(this)">Remove</button>
+            `;
+
+            taskList.appendChild(li);
+            taskInput.value = '';
+        }
+
+        function removeTask(button) {
+            const taskList = document.getElementById('taskList');
+            const li = button.parentNode;
+            taskList.removeChild(li);
+        }
+    </script>
+</body>
+</html>
